@@ -1,0 +1,43 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the app
+        run: npm run build
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build  # This job depends on the successful completion of 'build' job
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-output  # Change name based on uploaded artifact name (if different)
+          path: build/  # Download location for built artifacts
+
+      - name: Run tests against built app
+        run: npm test  # Adjust command to run tests against built files
+
