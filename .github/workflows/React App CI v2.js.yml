@@ -34,5 +34,5 @@ jobs:
     - name: stop exiting PM2 process
       run: pm2 stop quiz-app || true
     - name: start new PM2 process
-      run: pm2 start npm --name "quiz-app" --start
+      run: pm2 start npm --name "quiz-app" 
 
