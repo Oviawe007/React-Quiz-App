@@ -12,7 +12,9 @@ on:
 jobs:
   build:
 
-    runs-on: Quiz-App-Ubuntu
+   # runs-on: Quiz-App-Ubuntu
+
+    runs-on: Ubuntu-latest
 
     strategy:
       matrix:
