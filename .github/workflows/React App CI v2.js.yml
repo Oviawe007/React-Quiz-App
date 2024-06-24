@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: React Quiz App CI
+name: React Quiz App CI/CD
 
 on:
   push:
@@ -29,4 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
   #  - run: npm test
-  
+    - name: stop exiting PM2 process
+      run: pm2 stop quiz-app || true
+    - name: start new PM2 process
+      run: pm2 start npm --name "quiz-app" --start
+
