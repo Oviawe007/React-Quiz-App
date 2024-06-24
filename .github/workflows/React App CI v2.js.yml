@@ -29,6 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
   #  - run: npm test
+    - name: install PM2
+      run: npm install pm2 -g
     - name: stop exiting PM2 process
       run: pm2 stop quiz-app || true
     - name: start new PM2 process
