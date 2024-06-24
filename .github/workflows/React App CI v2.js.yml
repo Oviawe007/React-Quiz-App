@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: React-Quiz-App-linux
+    runs-on: Ubuntu-latest
 
     strategy:
       matrix:
